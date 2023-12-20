@@ -9,6 +9,9 @@ simple web game 15 (17-2) with context menu
 
 ![image](https://github.com/17neverends/game-17-2/assets/118381764/be699fca-b884-49e2-9de3-96204f0abbd8)<br>
 
+![image](https://github.com/17neverends/game-17-2/assets/118381764/67298463-de59-4be6-830d-450869f8185c)<br>
+
+
 ![image](https://github.com/17neverends/game-17-2/assets/118381764/16dc904c-fde5-48cf-a2db-91428fed0f73)<br>
 
 
