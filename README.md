@@ -1,5 +1,5 @@
 # game-17-2
-simple web game 15 with context menu
+simple web game 15 (17-2) with context menu
 ## You can manage cells with arrows on keypad and with mouseclick
 <br>
 ![image](https://github.com/17neverends/game-17-2/assets/118381764/79fcbd27-2a6e-4131-99ac-f756620d01e9)
