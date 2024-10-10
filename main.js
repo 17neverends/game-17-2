@@ -118,4 +118,3 @@ document.getElementById('newGameButton').onclick = function() {
     update_cell_values();
     document.getElementById('modal').style.display = "none";
 }
-showModal();
