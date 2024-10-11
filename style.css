@@ -1,6 +1,6 @@
 body {
   overflow: hidden;
-  background-image: url(backneon1.jpg);
+  background-image: url(static/backneon1.jpg);
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -50,12 +50,117 @@ body {
   color: white;
 }
 
+.timer {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.restart-button button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+  background-image: url(static/image.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  font-size: 24px;
+  padding: 0;
+  transition: transform 0.3s ease;
+}
+
+.restart-button button:hover {
+  transform: scale(1.1);
+}
+
+#popup {
+  display: none; 
+  position: fixed; 
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; 
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+#popup.modal-content {
+  background-color: #fff;
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; 
+  max-width: 500px; 
+  border-radius: 10px;
+  text-align: center;
+}
+
+#popup button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: #fff;
+  cursor: pointer;
+}
+
+#popup button:hover {
+  background-color: #3e8e41;
+}
+
+.leaderboard {
+  margin-top: 20px;
+}
+
+.leader-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.leader-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.leader-number {
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.leader-name {
+  flex-grow: 1;
+}
+
+.you-label {
+  font-weight: bold;
+}
+
 @media (max-width: 800px) {
   .cell {
       width: 80px;
       height: 80px;
       line-height: 80px;
       font-size: 40px;
+  }
+  .restart-button button {
+    width: 40px;
+    height: 40px;
   }
 }
 
@@ -65,6 +170,11 @@ body {
       height: 60px;
       line-height: 60px;
       font-size: 30px;
+  }
+
+  .restart-button button {
+    width: 30px;
+    height: 30px;
   }
 }
 
@@ -107,10 +217,6 @@ body {
   cursor: pointer;
 }
 
-h2 {
-  font-family: 'Georgia', serif;
-  color: #333;
-}
 
 #resultMessage {
   font-size: 18px;
@@ -118,7 +224,7 @@ h2 {
   color: #555;
 }
 
-button {
+#popup button {
   background-color: transparent;
   color: black;
   border: 2px solid black;
@@ -129,7 +235,7 @@ button {
   transition: background-color 0.3s, color 0.3s;
 }
 
-button:hover {
+#popup button:hover {
   background-color: black;
   color: white;
 }

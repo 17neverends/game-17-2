@@ -11,7 +11,9 @@
     
 </head>
 <body>
-
+    <div class="timer">
+        <span id="timer">00:00</span>
+    </div>
 <div class="container">
     <div class="cell" id="cell1" onclick="swap(1)"></div>
     <div class="cell" id="cell2" onclick="swap(2)"></div>
@@ -36,6 +38,17 @@
         <h2>Поздравляем!</h2>
         <p id="resultMessage"></p>
         <button id="newGameButton">Новая игра</button>
+    </div>
+</div>
+<div class="restart-button">
+    <button id="restart-button"></button>
+</div>
+<div id="popup" class="modal" style="display:none;">
+    <div class="modal-content">
+        <h2>Добро пожаловать, <span id="player-name"></span>!</h2>
+        <div class="leaderboard" id="leaderboard">
+        </div>
+        <button id="start-game-button">Начать игру</button>
     </div>
 </div>
 <script src="main.js"></script>

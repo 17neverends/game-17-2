@@ -1,3 +1,37 @@
+let timerInterval;
+let startTime;
+let name = "Василевс";
+const tg_id = 12345;
+
+
+function startTimer() {
+    startTime = new Date();
+    timerInterval = setInterval(updateTimer, 1000);
+}
+
+function updateTimer() {
+    const currentTime = new Date();
+    const timeDiff = (currentTime - startTime) / 1000;
+    const minutes = Math.floor(timeDiff / 60);
+    const seconds = Math.floor(timeDiff % 60);
+    document.getElementById('timer').innerText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
+
+function resetTimer() {
+    clearInterval(timerInterval);
+    document.getElementById('timer').innerText = '00:00';
+}
+
+document.getElementById('restart-button').onclick = function() {
+    values_cell_from_start_to_last = from_1_to_16_unique_random(16);
+    count_changes = 0;
+    time_count = new Date();
+    update_cell_values();
+    resetTimer();
+    startTimer();
+};
+
+
 function check_win(args) {
     const sortedArray = [...values_cell_from_start_to_last].sort((a, b) => a - b);
     return args.every((value, index) => value === sortedArray[index]);
@@ -118,3 +152,61 @@ document.getElementById('newGameButton').onclick = function() {
     update_cell_values();
     document.getElementById('modal').style.display = "none";
 }
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('popup').style.display = "block";
+});
+
+const leaderboardData = {
+    "leaders": [
+        { "position": 1, "name": "Петр", "score": 1000, "tg_id": 67890 },
+        { "position": 2, "name": "Алексей", "score": 950, "tg_id": 54321 },
+        { "position": 3, "name": "Иван", "score": 900, "tg_id": 12345 }
+    ]
+};
+
+document.getElementById('start-game-button').onclick = function() {
+    document.getElementById('popup').style.display = "none";
+    values_cell_from_start_to_last = from_1_to_16_unique_random(16);
+    count_changes = 0;
+    time_count = new Date();
+    update_cell_values();
+    startTimer();
+};
+
+function renderLeaderboard(data) {
+    document.getElementById('player-name').textContent = name;
+
+    const leaderboardElement = document.getElementById('leaderboard');
+    leaderboardElement.innerHTML = '';
+
+    data.leaders.forEach(leader => {
+        const leaderRow = document.createElement('div');
+        leaderRow.classList.add('leader-row');
+
+        let icon;
+        if (leader.position === 1) {
+            icon = '<img src="static/first.png" alt="Gold Medal" class="leader-icon">';
+        } else if (leader.position === 2) {
+            icon = '<img src="static/second.png" alt="Silver Medal" class="leader-icon">';
+        } else if (leader.position === 3) {
+            icon = '<img src="static/third.png" alt="Bronze Medal" class="leader-icon">';
+        } else {
+            icon = `<span class="leader-number">${leader.position}</span>`;
+        }
+
+        leaderRow.innerHTML = `
+            ${icon}
+            <span class="leader-name">${leader.name} - ${leader.score} очков</span>
+            ${leader.tg_id === tg_id ? '<span class="you-label">Вы</span>' : ''}
+        `;
+
+        leaderboardElement.appendChild(leaderRow);
+    });
+
+    document.getElementById('popup').style.display = 'block';
+}
+
+
+renderLeaderboard(leaderboardData);
