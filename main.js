@@ -120,6 +120,7 @@ function arrows_pressed(key) {
 
 function checkForWin() {
     if (check_win(values_cell_from_start_to_last)) {
+        sendResult(tg_id, (new Date() - time_count) / 1000);
         showModal();
     }
 }
@@ -175,6 +176,20 @@ document.getElementById('start-game-button').onclick = function() {
     startTimer();
 };
 
+function sendResult(tg_id, time) {
+    fetch('http://localhost:8000/stat/send_result', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            tg_id: tg_id,
+            time: time
+        })
+    })
+}
+
+
 function renderLeaderboard(data) {
     document.getElementById('player-name').textContent = name;
 
@@ -197,9 +212,10 @@ function renderLeaderboard(data) {
         }
 
         leaderRow.innerHTML = `
-            ${icon}
-            <span class="leader-name">${leader.name} - ${leader.score} очков</span>
-            ${leader.tg_id === tg_id ? '<span class="you-label">Вы</span>' : ''}
+        ${icon}
+        <span class="leader-name">
+            ${leader.tg_id === tg_id ? '<strong>' : ''}${leader.name} - ${leader.score} очков${leader.tg_id === tg_id ? '</strong>' : ''}
+        </span>
         `;
 
         leaderboardElement.appendChild(leaderRow);
